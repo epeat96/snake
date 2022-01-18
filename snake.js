@@ -38,18 +38,29 @@ const drawFood = () => {
 
 }
 
+const moveSnake = () => {
+
+    let reverseSnake = [...snake].reverse();
+
+    snake.forEach( (current,index) =>{
+
+        current.x = current.x + current.speed[0]*SNAKE_WIDTH;
+        current.y = current.y + current.speed[1]*SNAKE_HEIGHT;
+
+        if (index !== 0  ){
+            current.speed = [(snake[index - 1].x - current.x)/SNAKE_WIDTH, (snake[index - 1].y - current.y)/SNAKE_HEIGHT];
+        }
+    });
+}
 
 const drawSnake = () => {
-    
+
     snake.forEach( (current, index) =>{
 
         fill('white');
         rect( current.x, current.y, ...SNAKE_SIZE );
-        current.x = current.x + current.speed[0]*SNAKE_SIZE[0];
-        current.y = current.y + current.speed[1]*SNAKE_SIZE[1];
 
     });
-
 }
 
 class Food{
@@ -84,6 +95,7 @@ function setup() {
 function draw(){
 
     background('gray');
+    moveSnake();
     drawSnake();
     drawFood();
 
@@ -126,4 +138,12 @@ function keyPressed(){
         
     }
 
+    if ( keyCode === 33 ){
+
+        let lastElement = [...snake].reverse()[0];
+        let newSegment = new SnakePiece(lastElement.x - (lastElement.speed[0] * SNAKE_WIDTH) , lastElement.y - (lastElement.speed[1] * SNAKE_HEIGHT));
+        newSegment.speed = [(lastElement.x - newSegment.x)/SNAKE_WIDTH, (lastElement.y - newSegment.y)/SNAKE_HEIGHT];
+        snake.push(newSegment);
+        console.log(newSegment);
+    }
 }
