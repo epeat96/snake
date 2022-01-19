@@ -6,16 +6,18 @@ const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const PAGE_UP = 33;
 const SQUARE_BRACKET_RIGHT = 221;
 const FRAME_RATE = 5
-let snake = [];
-let food = [];
-let bite = new Howl({
+
+const bite = new Howl({
     src: ['./sounds/bite.mp3']
 });
 
-let music = new Howl({
+const music = new Howl({
     src: ['./sounds/taka.mp3'],
     loop: true
 });
+
+let snake = [];
+let food = [];
 
 const randomPosition = () => {
 
