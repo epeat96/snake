@@ -17,8 +17,8 @@ const randomPosition = () => {
 }
 
 const placeSnake = () => {
-    let head = new SnakePiece(...randomPosition());
     snake = [];
+    let head = new SnakePiece(...randomPosition());
     snake.push(head);
 }
 
@@ -29,14 +29,32 @@ const startNewGame = () => {
 
 }
 
+const validPosition = (x,y) => {
+
+    let position = []
+    let valid = false;
+
+    while ( valid === false ){
+        position = randomPosition();
+        snake.forEach( (current) => {
+            if( position[0] !== current.x && position[1] !== current.y ){
+                valid = true;
+            }
+        });
+    }
+
+    return position;
+} 
+
 const placeFood = (newGame = false) => {
 
     if ( newGame ){
         food = []
     }
 
-    let newfood = new Food(...randomPosition());
-    food.push(newfood);
+    let newFood = new Food(...validPosition());
+    food.push(newFood);
+
 }
 
 const drawFood = () => {
