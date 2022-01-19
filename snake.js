@@ -33,6 +33,15 @@ const eatFood = (index) => {
     food.splice(index,1);
 }
 
+const checkBoundaries = () => {
+    let head = snake[0];
+
+    if ( head.x < 0 || head.x > CANVAS_WIDTH || head.y < 0 || head.y > CANVAS_HEIGHT ){
+        startNewGame();
+    }
+
+}
+
 const checkFoodCollision = () => {
     
     let head = snake[0];
@@ -176,6 +185,7 @@ function draw(){
     background('gray');
     moveSnake();
     checkBodyCollision();
+    checkBoundaries();
     drawSnake();
     drawFood();
     checkFoodCollision();
