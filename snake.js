@@ -3,6 +3,7 @@ const CANVAS_HEIGHT = 900;
 const SNAKE_WIDTH = CANVAS_WIDTH/50;
 const SNAKE_HEIGHT = CANVAS_HEIGHT/50;
 const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
+const PAGE_UP = 33;
 let snake = [];
 let food;
 
@@ -138,7 +139,7 @@ function keyPressed(){
         
     }
 
-    if ( keyCode === 33 ){
+    if ( keyCode === PAGE_UP ){
 
         let lastElement = [...snake].reverse()[0];
         let newSegment = new SnakePiece(lastElement.x - (lastElement.speed[0] * SNAKE_WIDTH) , lastElement.y - (lastElement.speed[1] * SNAKE_HEIGHT));
