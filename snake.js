@@ -16,6 +16,25 @@ const randomPosition = () => {
     return [x,y]
 }
 
+const distance = (x1, y1, x2, y2) => {
+    let dist = sqrt( sq( x1 - x2 ) + sq( y1 - y2 ) );
+    return dist;
+}
+
+const checkBodyCollision = () => {
+    let head, body; 
+    [head,...body] =[...snake];
+    
+    body.forEach( (current) =>{
+        let dist = distance( head.x, head.y, current.x, current.y ) 
+        if ( dist < SNAKE_WIDTH || dist < SNAKE_HEIGHT ){
+            startNewGame();
+            return true;
+        }
+    });
+    return false;
+}
+
 const placeSnake = () => {
     snake = [];
     let head = new SnakePiece(...randomPosition());
@@ -126,6 +145,7 @@ function draw(){
 
     background('gray');
     moveSnake();
+    checkBodyCollision();
     drawSnake();
     drawFood();
 
