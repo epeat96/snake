@@ -16,8 +16,22 @@ const music = new Howl({
     loop: true
 });
 
+const scoreText = document.getElementById('scoreText'); 
+
 let snake = [];
 let food = [];
+let score = 0;
+
+const setScore = (newGame = false) => {
+
+    if(newGame){
+        scoreText.innerHTML = 'Score: 0';
+        return;
+    }
+
+    score++;
+    scoreText.innerHTML = `Score: ${score*100}`;
+}
 
 const randomPosition = () => {
 
@@ -81,6 +95,7 @@ const checkFoodCollision = () => {
             bite.load();
             bite.play();
             placeFood();
+            setScore();
         }
         dist = distance( tail.x, tail.y, current.x, current.y ) 
         if ( dist < SNAKE_WIDTH || dist < SNAKE_HEIGHT ){
@@ -117,6 +132,7 @@ const startNewGame = () => {
     music.fade(0,0.1,10000);
     placeSnake();
     placeFood(true);
+    setScore(true);
 
 }
 
@@ -223,6 +239,7 @@ function draw(){
     drawSnake();
     drawFood();
     checkFoodCollision();
+    
 
 }
 

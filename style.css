@@ -1,0 +1,97 @@
+@font-face {
+    font-family: '8-bit Operator+ 8';
+    src: url('fonts/8-bitOperatorPlus8-Regular.eot');
+    src: url('fonts/8-bitOperatorPlus8-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/8-bitOperatorPlus8-Regular.woff2') format('woff2'),
+        url('fonts/8-bitOperatorPlus8-Regular.woff') format('woff'),
+        url('fonts/8-bitOperatorPlus8-Regular.ttf') format('truetype'),
+        url('fonts/8-bitOperatorPlus8-Regular.svg#8-bitOperatorPlus8-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: '8-bit Operator+ SC';
+    src: url('fonts/8-bitOperatorPlusSC-Regular.eot');
+    src: url('fonts/8-bitOperatorPlusSC-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/8-bitOperatorPlusSC-Regular.woff2') format('woff2'),
+        url('fonts/8-bitOperatorPlusSC-Regular.woff') format('woff'),
+        url('fonts/8-bitOperatorPlusSC-Regular.ttf') format('truetype'),
+        url('fonts/8-bitOperatorPlusSC-Regular.svg#8-bitOperatorPlusSC-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: '8-bit Operator+';
+    src: url('fonts/8-bitOperatorPlus-Regular.eot');
+    src: url('fonts/8-bitOperatorPlus-Regular.eot?#iefix') format('embedded-opentype'),
+        url('fonts/8-bitOperatorPlus-Regular.woff2') format('woff2'),
+        url('fonts/8-bitOperatorPlus-Regular.woff') format('woff'),
+        url('fonts/8-bitOperatorPlus-Regular.ttf') format('truetype'),
+        url('fonts/8-bitOperatorPlus-Regular.svg#8-bitOperatorPlus-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: '8-bit Operator+ 8';
+    src: url('fonts/8bitOperatorPlus8-Bold.eot');
+    src: url('fonts/8bitOperatorPlus8-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/8bitOperatorPlus8-Bold.woff2') format('woff2'),
+        url('fonts/8bitOperatorPlus8-Bold.woff') format('woff'),
+        url('fonts/8bitOperatorPlus8-Bold.ttf') format('truetype'),
+        url('fonts/8bitOperatorPlus8-Bold.svg#8bitOperatorPlus8-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: '8-bit Operator+ SC';
+    src: url('fonts/8bitOperatorPlusSC-Bold.eot');
+    src: url('fonts/8bitOperatorPlusSC-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/8bitOperatorPlusSC-Bold.woff2') format('woff2'),
+        url('fonts/8bitOperatorPlusSC-Bold.woff') format('woff'),
+        url('fonts/8bitOperatorPlusSC-Bold.ttf') format('truetype'),
+        url('fonts/8bitOperatorPlusSC-Bold.svg#8bitOperatorPlusSC-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: '8-bit Operator+';
+    src: url('fonts/8bitOperatorPlus-Bold.eot');
+    src: url('fonts/8bitOperatorPlus-Bold.eot?#iefix') format('embedded-opentype'),
+        url('fonts/8bitOperatorPlus-Bold.woff2') format('woff2'),
+        url('fonts/8bitOperatorPlus-Bold.woff') format('woff'),
+        url('fonts/8bitOperatorPlus-Bold.ttf') format('truetype'),
+        url('fonts/8bitOperatorPlus-Bold.svg#8bitOperatorPlus-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+canvas{
+    border-style: solid;
+} 
+
+main {
+    float: left;
+}
+
+h1 {
+    font-family: '8-bit Operator+ SC';
+    font-size : 40;
+}
+
+#scoreText {
+    font-family: '8-bit Operator+ 8';
+    font-size: 30;
+    float: left;
+
+}
