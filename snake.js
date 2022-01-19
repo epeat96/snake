@@ -174,7 +174,6 @@ function keyPressed(){
         let newSegment = new SnakePiece(lastElement.x - (lastElement.speed[0] * SNAKE_WIDTH) , lastElement.y - (lastElement.speed[1] * SNAKE_HEIGHT));
         newSegment.speed = [(lastElement.x - newSegment.x)/SNAKE_WIDTH, (lastElement.y - newSegment.y)/SNAKE_HEIGHT];
         snake.push(newSegment);
-        console.log(newSegment);
     }
 
     if ( keyCode === SQUARE_BRACKET_RIGHT ){
