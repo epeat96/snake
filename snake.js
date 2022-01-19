@@ -5,6 +5,7 @@ const SNAKE_HEIGHT = CANVAS_HEIGHT/50;
 const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const PAGE_UP = 33;
 const SQUARE_BRACKET_RIGHT = 221;
+const FRAME_RATE = 1
 let snake = [];
 let food = [];
 
@@ -134,7 +135,7 @@ class SnakePiece{
 function setup() {
 
     createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-    frameRate(5);
+    frameRate(FRAME_RATE);
     startNewGame();
 
 }
