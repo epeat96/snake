@@ -12,6 +12,11 @@ let bite = new Howl({
     src: ['./sounds/bite.mp3']
 });
 
+let music = new Howl({
+    src: ['./sounds/taka.mp3'],
+    loop: true
+});
+
 const randomPosition = () => {
 
     let x = 0 + SNAKE_WIDTH*Math.floor(Math.random() * CANVAS_WIDTH/SNAKE_WIDTH);
@@ -105,6 +110,9 @@ const placeSnake = () => {
 
 const startNewGame = () => {
 
+    music.stop();
+    music.play();
+    music.fade(0,0.1,10000);
     placeSnake();
     placeFood(true);
 
