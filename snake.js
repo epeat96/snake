@@ -8,6 +8,9 @@ const SQUARE_BRACKET_RIGHT = 221;
 const FRAME_RATE = 5
 let snake = [];
 let food = [];
+let bite = new Howl({
+    src: ['./sounds/bite.mp3']
+});
 
 const randomPosition = () => {
 
@@ -15,6 +18,24 @@ const randomPosition = () => {
     let y = 0 + SNAKE_HEIGHT*Math.floor(Math.random() * CANVAS_HEIGHT/SNAKE_HEIGHT);
 
     return [x,y]
+}
+
+const drawGrid = () => {
+    
+    stroke('black');
+
+    for ( let x = 0; x <= CANVAS_HEIGHT; x = x + SNAKE_HEIGHT ){
+
+        line(x,0,x,CANVAS_WIDTH);
+
+    }
+
+    for ( let y = 0; y < CANVAS_HEIGHT; y = y + SNAKE_HEIGHT ){
+
+        line(0,y,CANVAS_HEIGHT,y);
+
+    }
+
 }
 
 const distance = (x1, y1, x2, y2) => {
@@ -50,6 +71,8 @@ const checkFoodCollision = () => {
     food.forEach( (current,index) => {
         let dist = distance( head.x, head.y, current.x, current.y ) 
         if ( dist < SNAKE_WIDTH || dist < SNAKE_HEIGHT ){
+            bite.load();
+            bite.play();
             placeFood();
         }
         dist = distance( tail.x, tail.y, current.x, current.y ) 
@@ -183,6 +206,7 @@ function setup() {
 function draw(){
 
     background('gray');
+    drawGrid();
     moveSnake();
     checkBodyCollision();
     checkBoundaries();
