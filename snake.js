@@ -4,6 +4,7 @@ const SNAKE_WIDTH = CANVAS_WIDTH/50;
 const SNAKE_HEIGHT = CANVAS_HEIGHT/50;
 const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const PAGE_UP = 33;
+const SQUARE_BRACKET_RIGHT = 221;
 let snake = [];
 let food;
 
@@ -147,4 +148,9 @@ function keyPressed(){
         snake.push(newSegment);
         console.log(newSegment);
     }
+
+    if ( keyCode === SQUARE_BRACKET_RIGHT ){
+        placeFood();
+    }
+
 }
