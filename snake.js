@@ -29,10 +29,8 @@ const checkBodyCollision = () => {
         let dist = distance( head.x, head.y, current.x, current.y ) 
         if ( dist < SNAKE_WIDTH || dist < SNAKE_HEIGHT ){
             startNewGame();
-            return true;
         }
     });
-    return false;
 }
 
 const placeSnake = () => {
