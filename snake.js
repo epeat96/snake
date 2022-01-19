@@ -6,7 +6,7 @@ const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const PAGE_UP = 33;
 const SQUARE_BRACKET_RIGHT = 221;
 let snake = [];
-let food;
+let food = [];
 
 const randomPosition = () => {
 
@@ -25,18 +25,28 @@ const placeSnake = () => {
 const startNewGame = () => {
 
     placeSnake();
-    placeFood();
+    placeFood(true);
 
 }
 
-const placeFood = () => {
-    food = new Food(...randomPosition());
+const placeFood = (newGame = false) => {
+
+    if ( newGame ){
+        food = []
+    }
+
+    let newfood = new Food(...randomPosition());
+    food.push(newfood);
 }
 
 const drawFood = () => {
 
-    fill('red');
-    rect( food.x, food.y, ...SNAKE_SIZE );
+    food.forEach( (current) => { 
+
+        fill('red');
+        rect( current.x, current.y, ...SNAKE_SIZE );
+
+    });
 
 }
 
