@@ -5,7 +5,7 @@ const SNAKE_HEIGHT = CANVAS_HEIGHT/50;
 const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const PAGE_UP = 33;
 const SQUARE_BRACKET_RIGHT = 221;
-const FRAME_RATE = 1
+const FRAME_RATE = 5
 let snake = [];
 let food = [];
 
@@ -20,6 +20,37 @@ const randomPosition = () => {
 const distance = (x1, y1, x2, y2) => {
     let dist = sqrt( sq( x1 - x2 ) + sq( y1 - y2 ) );
     return dist;
+}
+
+const addSnakePiece = () => {
+        let lastElement = [...snake].reverse()[0];
+        let newSegment = new SnakePiece(lastElement.x - (lastElement.speed[0] * SNAKE_WIDTH) , lastElement.y - (lastElement.speed[1] * SNAKE_HEIGHT));
+        newSegment.speed = [(lastElement.x - newSegment.x)/SNAKE_WIDTH, (lastElement.y - newSegment.y)/SNAKE_HEIGHT];
+        snake.push(newSegment);
+}
+
+const eatFood = (index) => {
+    food.splice(index,1);
+}
+
+const checkFoodCollision = () => {
+    
+    let head = snake[0];
+    let tail = [...snake].reverse()[0];
+
+    food.forEach( (current,index) => {
+        let dist = distance( head.x, head.y, current.x, current.y ) 
+        if ( dist < SNAKE_WIDTH || dist < SNAKE_HEIGHT ){
+            placeFood();
+        }
+        dist = distance( tail.x, tail.y, current.x, current.y ) 
+        if ( dist < SNAKE_WIDTH || dist < SNAKE_HEIGHT ){
+            addSnakePiece();
+            eatFood(index);
+        }
+
+    });
+
 }
 
 const checkBodyCollision = () => {
@@ -147,6 +178,7 @@ function draw(){
     checkBodyCollision();
     drawSnake();
     drawFood();
+    checkFoodCollision();
 
 }
 
@@ -188,11 +220,7 @@ function keyPressed(){
     }
 
     if ( keyCode === PAGE_UP ){
-
-        let lastElement = [...snake].reverse()[0];
-        let newSegment = new SnakePiece(lastElement.x - (lastElement.speed[0] * SNAKE_WIDTH) , lastElement.y - (lastElement.speed[1] * SNAKE_HEIGHT));
-        newSegment.speed = [(lastElement.x - newSegment.x)/SNAKE_WIDTH, (lastElement.y - newSegment.y)/SNAKE_HEIGHT];
-        snake.push(newSegment);
+        addSnakePiece();
     }
 
     if ( keyCode === SQUARE_BRACKET_RIGHT ){
