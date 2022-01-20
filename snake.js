@@ -5,7 +5,8 @@ const SNAKE_HEIGHT = CANVAS_HEIGHT/50;
 const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const COMMA = 188;
 const PERIOD = 190;
-const FRAME_RATE = 5;
+const DIFFICULTY = 10;
+const body = document.body;
 
 const bite = new Howl({
     src: ['./sounds/bite.mp3']
@@ -18,15 +19,26 @@ let music = WaveSurfer.create({
 });
 music.load('./sounds/taka.mp3');
 
-let max = 0;
+const shake = ( shakeNow = true ) => {
+   
+    if(shakeNow){
+        body.style.cssText += 'animation : shake 1s;animation-iteration-count: infinite';
+    }else{
+        body.style.animation = '';
+    }
+
+}
 
 music.on('audioprocess', function(e) {
     analyser.getByteFrequencyData(frequencyData);
     var w = frequencyData[0] * 0.05;
-    if ( w >= max ){
-        max = w
-        console.log(w);
+    if ( w >= 12 ){
+        filter(INVERT);
+        shake();
+    }else {
+        shake(false);
     }
+
 });
 
 music.on('finish', () => music.play() );
@@ -185,7 +197,7 @@ const drawFood = () => {
 
     food.forEach( (current) => { 
 
-        fill('red');
+        fill('#F06060');
         rect( current.x, current.y, ...SNAKE_SIZE );
 
     });
@@ -211,7 +223,7 @@ const drawSnake = () => {
 
     snake.forEach( (current, index) =>{
 
-        fill('white');
+        fill('#F2EBBF');
         rect( current.x, current.y, ...SNAKE_SIZE );
 
     });
@@ -241,14 +253,14 @@ class SnakePiece{
 function setup() {
 
     createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-    frameRate(FRAME_RATE);
+    frameRate(DIFFICULTY);
     startNewGame();
 
 }
 
 function draw(){
 
-    background('gray');
+    background('#5C4B51');
     drawGrid();
     moveSnake();
     checkBoundaries();
