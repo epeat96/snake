@@ -5,7 +5,7 @@ const SNAKE_HEIGHT = CANVAS_HEIGHT/50;
 const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const COMMA = 188;
 const PERIOD = 190;
-const DIFFICULTY = 10;
+let DIFFICULTY = 10;
 const body = document.body;
 
 const bite = new Howl({
@@ -32,11 +32,18 @@ const shake = ( shakeNow = true ) => {
 music.on('audioprocess', function(e) {
     analyser.getByteFrequencyData(frequencyData);
     var w = frequencyData[0] * 0.05;
-    if ( w >= 12 ){
-        filter(INVERT);
-        shake();
-    }else {
+    if ( w < 10 ){
+
         shake(false);
+
+    }else if ( w >= 10 && w < 12 ) {
+
+        shake();
+
+    } else if ( w >= 12 ){
+
+        filter(INVERT);
+
     }
 
 });
@@ -158,6 +165,9 @@ const placeSnake = () => {
 
 const startNewGame = () => {
 
+    if(music.isPlaying()){
+        music.stop();
+    }
     music.play();
     placeSnake();
     placeFood(true);
@@ -252,6 +262,10 @@ class SnakePiece{
 
 function setup() {
 
+    alert(`PHOTOSENSITIVE WARNING: READ BEFORE PLAYING!
+A very small percentage of individuals may experience epileptic seizures when exposed to certain light patterns or flashing lights. Exposure to certain patterns or backgrounds on a computer screen, or while playing video games, may induce an epileptic seizure in these individuals. Certain conditions may induce previously undetected epileptic symptoms even in persons who have no history of prior seizures or epilepsy.
+
+If you, or anyone in your family, have an epileptic condition, consult your physician prior to playing. If you experience any of the following symptoms while playing a video or computer game -- dizziness, altered vision, eye or muscle twitches, loss of awareness, disorientation, any involuntary movement, or convulsions -- IMMEDIATELY discontinue use and consult your physician before resuming play.`);
     createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
     frameRate(DIFFICULTY);
     startNewGame();
