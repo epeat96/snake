@@ -1,18 +1,22 @@
 <html>
-  <head>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/goldfire/howler.js/src/howler.core.js"></script>
-    <link rel='stylesheet' href='style.css'>
-    <title>Snake Game</title>
-  </head>
-  <body>
-        <main>
-        </main>
-        <center>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/goldfire/howler.js/src/howler.core.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+        <link rel='stylesheet' href='style.css'>
+        <title>Snake Game</title>
+    </head>
+    <body>
+        <div id="gameContainer">
+            <main>
+            </main>
+            <center>
             <h1>Welcome to Epeat's Snake Game</h1>
             <br>
             <p id="scoreText">Your score is: </p>
-        </center>
+            </center>
+        </div>
+        <div id="waveform"></div>
         <script src="snake.js"></script>
-  </body>
+    </body>
 </html>

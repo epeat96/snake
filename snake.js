@@ -5,16 +5,53 @@ const SNAKE_HEIGHT = CANVAS_HEIGHT/50;
 const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const COMMA = 188;
 const PERIOD = 190;
-const FRAME_RATE = 5
+let DIFFICULTY = 10;
+const body = document.body;
 
 const bite = new Howl({
     src: ['./sounds/bite.mp3']
 });
 
-const music = new Howl({
-    src: ['./sounds/taka.mp3'],
-    loop: true
+let music = WaveSurfer.create({
+    container: "#waveform",
+    waveColor: '#5B88C8',
+    progressColor: '#264E73'
 });
+music.load('./sounds/taka.mp3');
+
+const shake = ( shakeNow = true ) => {
+   
+    if(shakeNow){
+        body.style.cssText += 'animation : shake 1s;animation-iteration-count: infinite';
+    }else{
+        body.style.animation = '';
+    }
+
+}
+
+music.on('audioprocess', function(e) {
+    analyser.getByteFrequencyData(frequencyData);
+    var w = frequencyData[0] * 0.05;
+    if ( w < 10 ){
+
+        shake(false);
+
+    }else if ( w >= 10 && w < 12 ) {
+
+        shake();
+
+    } else if ( w >= 12 ){
+
+        filter(INVERT);
+
+    }
+
+});
+
+music.on('finish', () => music.play() );
+
+let analyser = music.backend.analyser,
+    frequencyData = new Uint8Array(analyser.frequencyBinCount);
 
 const scoreText = document.getElementById('scoreText'); 
 
@@ -25,6 +62,7 @@ let score = 0;
 const setScore = (newGame = false) => {
 
     if(newGame){
+        score = 0;
         scoreText.innerHTML = 'Score: 0';
         return;
     }
@@ -127,9 +165,10 @@ const placeSnake = () => {
 
 const startNewGame = () => {
 
-    music.stop();
+    if(music.isPlaying()){
+        music.stop();
+    }
     music.play();
-    music.fade(0,0.1,10000);
     placeSnake();
     placeFood(true);
     setScore(true);
@@ -168,7 +207,7 @@ const drawFood = () => {
 
     food.forEach( (current) => { 
 
-        fill('red');
+        fill('#F06060');
         rect( current.x, current.y, ...SNAKE_SIZE );
 
     });
@@ -194,7 +233,7 @@ const drawSnake = () => {
 
     snake.forEach( (current, index) =>{
 
-        fill('white');
+        fill('#F2EBBF');
         rect( current.x, current.y, ...SNAKE_SIZE );
 
     });
@@ -223,19 +262,23 @@ class SnakePiece{
 
 function setup() {
 
+    alert(`PHOTOSENSITIVE WARNING: READ BEFORE PLAYING!
+A very small percentage of individuals may experience epileptic seizures when exposed to certain light patterns or flashing lights. Exposure to certain patterns or backgrounds on a computer screen, or while playing video games, may induce an epileptic seizure in these individuals. Certain conditions may induce previously undetected epileptic symptoms even in persons who have no history of prior seizures or epilepsy.
+
+If you, or anyone in your family, have an epileptic condition, consult your physician prior to playing. If you experience any of the following symptoms while playing a video or computer game -- dizziness, altered vision, eye or muscle twitches, loss of awareness, disorientation, any involuntary movement, or convulsions -- IMMEDIATELY discontinue use and consult your physician before resuming play.`);
     createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-    frameRate(FRAME_RATE);
+    frameRate(DIFFICULTY);
     startNewGame();
 
 }
 
 function draw(){
 
-    background('gray');
+    background('#5C4B51');
     drawGrid();
     moveSnake();
-    checkBodyCollision();
     checkBoundaries();
+    checkBodyCollision();
     drawSnake();
     drawFood();
     checkFoodCollision();
