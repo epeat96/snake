@@ -4,6 +4,10 @@ const SNAKE_WIDTH = CANVAS_WIDTH/50;
 const SNAKE_HEIGHT = CANVAS_HEIGHT/50;
 const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const COMMA = 188;
+const W = 87;
+const A = 65;
+const S = 83;
+const D = 68;
 const PERIOD = 190;
 const volumeSlider = document.getElementById('volume');
 let DIFFICULTY = 10;
@@ -302,28 +306,28 @@ function draw(){
 
 function keyPressed(){
 
-    if ( keyCode === UP_ARROW ){
+    if ( keyCode === UP_ARROW || keyCode === W){
 
         snake[0].speed = [0,-1];
         return;
         
     }
 
-    if ( keyCode === DOWN_ARROW ){
+    if ( keyCode === DOWN_ARROW || keyCode === S ){
 
         snake[0].speed = [0,1];
         return;
         
     }
 
-    if ( keyCode === RIGHT_ARROW ){
+    if ( keyCode === RIGHT_ARROW || keyCode === D ){
 
         snake[0].speed = [1,0];
         return;
         
     }
 
-    if ( keyCode === LEFT_ARROW ){
+    if ( keyCode === LEFT_ARROW || keyCode === A ){
 
         snake[0].speed = [-1,0];
         return;
