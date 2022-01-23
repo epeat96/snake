@@ -5,6 +5,7 @@ const SNAKE_HEIGHT = CANVAS_HEIGHT/50;
 const SNAKE_SIZE = [ SNAKE_WIDTH, SNAKE_HEIGHT ];
 const COMMA = 188;
 const PERIOD = 190;
+const volumeSlider = document.getElementById('volume');
 let DIFFICULTY = 10;
 const body = document.body;
 
@@ -18,6 +19,11 @@ let music = WaveSurfer.create({
     progressColor: '#264E73'
 });
 music.load('./sounds/taka.mp3');
+
+volumeSlider.onchange = () => {
+    music.setVolume(volumeSlider.value*0.001);
+}
+
 
 const shake = ( shakeNow = true ) => {
    
@@ -47,6 +53,8 @@ music.on('audioprocess', function(e) {
     }
 
 });
+
+music.setVolume(volumeSlider.value*0.001);
 
 music.on('finish', () => music.play() );
 
@@ -270,6 +278,10 @@ If you, or anyone in your family, have an epileptic condition, consult your phys
     frameRate(DIFFICULTY);
     startNewGame();
 
+    const canvas = document.getElementById('defaultCanvas0');
+    canvas.onclick = () => {
+        startNewGame();
+    }
 }
 
 function draw(){
@@ -283,13 +295,6 @@ function draw(){
     drawFood();
     checkFoodCollision();
     
-
-}
-
-function mouseClicked(){
-
-    startNewGame();
-    return false;
 
 }
 
