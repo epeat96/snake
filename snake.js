@@ -21,7 +21,9 @@ let music = WaveSurfer.create({
 music.load('./sounds/taka.mp3');
 
 volumeSlider.onchange = () => {
-    music.setVolume(volumeSlider.value*0.001);
+    var newVolume = volumeSlider.value*0.01;
+    music.setVolume(newVolume);
+    Howler.volume(newVolume);
 }
 
 
