@@ -130,7 +130,7 @@ const eatFood = (index) => {
 const checkBoundaries = () => {
     let head = snake[0];
 
-    if ( head.x < 0 || head.x > CANVAS_WIDTH || head.y < 0 || head.y > CANVAS_HEIGHT ){
+    if ( head.x < 0 || head.x > CANVAS_WIDTH - SNAKE_WIDTH  || head.y < 0 || head.y > CANVAS_HEIGHT - SNAKE_HEIGHT ){
         startNewGame();
     }
 
