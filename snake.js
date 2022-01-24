@@ -195,8 +195,8 @@ const validPosition = (x,y) => {
     let valid = false;
 
     while ( valid === false ){
-        position = randomPosition();
         snake.forEach( (current) => {
+            position = randomPosition();
             if( position[0] !== current.x && position[1] !== current.y ){
                 valid = true;
             }
